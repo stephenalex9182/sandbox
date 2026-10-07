@@ -1,0 +1,387 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PatchVerify AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span>⚡</span> PatchVerify AI
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#analyzer">Analyzer</a>
+            <a href="#how">How It Works</a>
+        </div>
+
+        <button class="nav-button" onclick="scrollToAnalyzer()">
+            Start Verification
+        </button>
+
+    </nav>
+
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                AI Powered • E2B Sandbox Verification
+            </div>
+
+            <h1>
+                Automatically Detect.
+                <span>Patch.</span>
+                Verify.
+            </h1>
+
+            <p>
+                Analyze server error logs, generate AI-powered code patches,
+                and safely verify them inside an isolated sandbox before
+                they reach production.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button onclick="scrollToAnalyzer()" class="primary-button">
+                    Analyze Error →
+                </button>
+
+                <button onclick="showDemo()" class="secondary-button">
+                    View Demo
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="terminal-header">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="terminal">
+
+                <p class="terminal-gray">$ patchverify analyze server.log</p>
+
+                <p>
+                    <span class="green">✓</span>
+                    Error detected
+                </p>
+
+                <p>
+                    <span class="green">✓</span>
+                    Root cause identified
+                </p>
+
+                <p>
+                    <span class="green">✓</span>
+                    AI patch generated
+                </p>
+
+                <p>
+                    <span class="yellow">●</span>
+                    Running E2B sandbox...
+                </p>
+
+                <p>
+                    <span class="green">✓</span>
+                    Tests passed
+                </p>
+
+                <br>
+
+                <p class="success">
+                    PATCH VERIFIED
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Analyzer -->
+    <section id="analyzer" class="analyzer">
+
+        <div class="section-title">
+
+            <p class="small-title">ERROR ANALYZER</p>
+
+            <h2>
+                Verify your server patch
+            </h2>
+
+            <p>
+                Upload an error log and let the system analyze,
+                generate and verify a possible fix.
+            </p>
+
+        </div>
+
+
+        <div class="analyzer-container">
+
+            <!-- Upload -->
+            <div class="upload-card">
+
+                <h3>1. Upload Error Log</h3>
+
+                <div id="dropZone" class="drop-zone">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h4>Drop your log file here</h4>
+
+                    <p>or select a file from your computer</p>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".txt,.log"
+                    >
+
+                    <label for="fileInput" class="file-button">
+                        Choose File
+                    </label>
+
+                    <p id="fileName"></p>
+
+                </div>
+
+                <button
+                    class="analyze-button"
+                    onclick="analyzeError()">
+
+                    Analyze Error
+
+                </button>
+
+            </div>
+
+
+            <!-- Analysis -->
+            <div class="analysis-card">
+
+                <h3>2. AI Analysis</h3>
+
+                <div id="analysisResult" class="empty-result">
+
+                    <div class="empty-icon">
+                        AI
+                    </div>
+
+                    <p>
+                        Upload an error log to begin analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Verification -->
+    <section class="verification">
+
+        <div class="section-title">
+
+            <p class="small-title">SANDBOX VERIFICATION</p>
+
+            <h2>
+                Test before production
+            </h2>
+
+            <p>
+                Every generated patch is tested inside an isolated
+                execution environment.
+            </p>
+
+        </div>
+
+
+        <div class="verification-box">
+
+            <div class="status-row">
+
+                <div>
+                    <p class="label">SANDBOX STATUS</p>
+
+                    <h3 id="sandboxStatus">
+                        Waiting
+                    </h3>
+                </div>
+
+                <div id="statusBadge" class="status waiting">
+                    ● Waiting
+                </div>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <div id="progressBar" class="progress-bar"></div>
+
+            </div>
+
+
+            <div class="tests">
+
+                <div class="test">
+                    <span id="test1">○</span>
+                    Error reproduction
+                </div>
+
+                <div class="test">
+                    <span id="test2">○</span>
+                    Patch application
+                </div>
+
+                <div class="test">
+                    <span id="test3">○</span>
+                    Unit tests
+                </div>
+
+                <div class="test">
+                    <span id="test4">○</span>
+                    Regression tests
+                </div>
+
+            </div>
+
+
+            <div id="finalResult" class="final-result">
+
+                <div class="result-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>Patch Verified</h3>
+
+                    <p>
+                        All verification tests passed successfully.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- How it works -->
+    <section id="how" class="how">
+
+        <div class="section-title">
+
+            <p class="small-title">WORKFLOW</p>
+
+            <h2>
+                How PatchVerify AI works
+            </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div>01</div>
+
+                <h3>Detect</h3>
+
+                <p>
+                    Analyze server logs and identify the root cause.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div>02</div>
+
+                <h3>Generate</h3>
+
+                <p>
+                    AI generates a potential code patch.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div>03</div>
+
+                <h3>Sandbox</h3>
+
+                <p>
+                    Run the patch inside an isolated E2B environment.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div>04</div>
+
+                <h3>Verify</h3>
+
+                <p>
+                    Execute tests and determine whether the patch works.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>⚡ PatchVerify AI</h3>
+
+        <p>
+            Automated Server Error Log Patch Verification
+        </p>
+
+        <p class="copyright">
+            Built for safer AI-assisted software development.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
